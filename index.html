@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Simple Text | Loaders</title>
+    <style>
+      #simple-text-loading{
+        width: 200px;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 25%;
+        position: relative;
+        font-size: 25px;
+        font-family: 'Arial';
+      }
+      #simple-text-loading:after{
+        content: "Coming soon";
+        animation: load 3s linear infinite;
+      }
+      @keyframes load{
+        0%{
+          content: "Coming soon";
+        }
+        25%{
+          content: "Coming soon.";
+        }
+        50%{
+          content: "Coming soon..";
+        }
+        75%{
+          content: "Coming soon...";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="simple-text-loading"></div>
+  </body>
+</html>
