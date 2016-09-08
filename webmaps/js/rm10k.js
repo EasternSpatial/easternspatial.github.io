@@ -16,6 +16,7 @@
          });
          L.marker([-75.842136004738762, 44.915590473006233], {
              icon: L.AwesomeMarkers.icon({
+				// start/finish
                  icon: 'spinner',
                  prefix: 'fa',
                  markerColor: 'red',
@@ -24,6 +25,7 @@
          }).addTo(map);
          L.marker([-75.832060018123741, 44.914413549299333], {
              icon: L.AwesomeMarkers.icon({
+				// 1km marker
                  icon: 'coffee',
                  prefix: 'fa',
                  markerColor: 'red',
@@ -32,6 +34,7 @@
          }).addTo(map);
          L.marker([-75.822561794950488, 44.911647589142717], {
              icon: L.AwesomeMarkers.icon({
+				// 2km marker
                  icon: 'cog',
                  prefix: 'fa',
                  markerColor: 'purple',
@@ -40,6 +43,7 @@
          }).addTo(map);
          L.marker([-75.814411333682742, 44.904838590895402], {
              icon: L.AwesomeMarkers.icon({
+				// 3km marker
                  icon: 'glass',
                  prefix: 'fa',
                  markerColor: 'green'
@@ -47,6 +51,7 @@
          }).addTo(map);
          L.marker([-75.819099035460027, 44.904847825524257], {
              icon: L.AwesomeMarkers.icon({
+				// 4km marker
                  icon: 'shopping-cart',
                  prefix: 'fa',
                  markerColor: 'blue'
@@ -54,13 +59,22 @@
          }).addTo(map);
          L.marker([-75.819222734458137, 44.908766479203578], {
              icon: L.AwesomeMarkers.icon({
+				// 5km marker
                  icon: 'info',
                  prefix: 'fa',
                  markerColor: 'orange'
              })
          }).addTo(map);
+		 L.marker([-75.821638143643241, 44.909619921084101], {
+             icon: L.AwesomeMarkers.icon({
+				// 6km marker
+                 icon: 'group',
+                 prefix: 'fa',
+                 markerColor: 'darkred'
+             })
          L.marker([-75.829359263348891, 44.910911354101088], {
              icon: L.AwesomeMarkers.icon({
+				// 7km marker
                  icon: 'group',
                  prefix: 'fa',
                  markerColor: 'darkred'
@@ -68,6 +82,7 @@
          }).addTo(map);
          L.marker([-75.838807385644841, 44.905404992249714], {
              icon: L.AwesomeMarkers.icon({
+				// 8km marker
                  icon: 'arrow-right',
                  prefix: 'fa',
                  markerColor: 'darkblue'
@@ -75,6 +90,7 @@
          }).addTo(map);
          L.marker([-75.840375322159417, 44.909046491288322], {
              icon: L.AwesomeMarkers.icon({
+				// 9km marker
                  icon: 'twitter',
                  prefix: 'fa',
                  markerColor: 'cadetblue'
