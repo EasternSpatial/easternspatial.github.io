@@ -16,7 +16,7 @@
          });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
-              add GeoJSON layer to the map once the file is loaded
+              //add GeoJSON layer to the map once the file is loaded
              L.geoJson(data).addTo(map);
          });
          //$.getJSON("features.geojson", function(featData) {
