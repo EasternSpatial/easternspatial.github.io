@@ -33,5 +33,6 @@
                              }).addTo(map);
                      });
              }
+			 }
              // you could use $(window).load(main);
          window.onload = main;
