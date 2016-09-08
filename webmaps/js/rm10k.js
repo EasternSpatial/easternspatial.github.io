@@ -10,12 +10,16 @@
                  maxZoom: 16
              }).addTo(map);
 			 
-		  // load GeoJSON from an external file
-  $.getJSON("10k.geojson",function(data){
-    // add GeoJSON layer to the map once the file is loaded
-    L.geoJson(data).addTo(map);
-  });
-    
+         // load 10k course route
+         $.getJSON("10k.geojson", function(data) {
+             // add GeoJSON layer to the map once the file is loaded
+             L.geoJson(data).addTo(map);
+         });
+		 // load 10k course route features
+         $.getJSON("features.geojson", function(data) {
+             // add GeoJSON layer to the map once the file is loaded
+             L.geoJson(data).addTo(map);
+         });
      }
      // you could use $(window).load(main);
  window.onload = main;
