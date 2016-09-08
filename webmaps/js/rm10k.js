@@ -15,24 +15,24 @@
              L.geoJson(data).addTo(map);
          });
          // load 10k course route features
-         //$.getJSON("features.geojson", function(data) {
-              //add GeoJSON layer to the map once the file is loaded
-             //L.geoJson(data).addTo(map);
-         //});
-         $.getJSON("features.geojson", function(featData) {
-                     L.geoJson(featData, {
-                             style: function(feature) {
-                                 var ptSymbol,
-                                     feat = feature.properties.cng_(
-                                         Meters);
-                                 if (feat = 0.0) ptSymbol = L.AwesomeMarkers
-                                     .icon({
-                                         icon: 'coffee',
-                                         markerColor: 'red'
-                                     })                               
-                             }).addTo(map);
-                     });
+         $.getJSON("features.geojson", function(data) {
+              add GeoJSON layer to the map once the file is loaded
+             L.geoJson(data).addTo(map);
+         });
+         //$.getJSON("features.geojson", function(featData) {
+                     //L.geoJson(featData, {
+                            // style: function(feature) {
+                                 //var ptSymbol,
+                                    // feat = feature.properties.cng_(
+                                        // Meters);
+                                // if (feat = 0.0) ptSymbol = L.AwesomeMarkers
+                                     //.icon({
+                                       //  icon: 'coffee',
+                                       //  markerColor: 'red'
+                                     //})                               
+                             //}).addTo(map);
+                    //});
              }
-			 }
+			 
              // you could use $(window).load(main);
          window.onload = main;
