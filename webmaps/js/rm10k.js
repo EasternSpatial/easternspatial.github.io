@@ -16,7 +16,7 @@
          });
 		 
 		 function style(feature) {
-        if ("0" == feature.properties.cng_Meters) {
+        if ("0.0" == feature.properties.cng_Meters) {
             return {
                 color: 'red',
             };
