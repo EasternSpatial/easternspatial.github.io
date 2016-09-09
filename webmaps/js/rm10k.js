@@ -14,18 +14,24 @@
              // add GeoJSON layer to the map once the file is loaded
              L.geoJson(data).addTo(map);
          });
+		 
+		 function style(feature) {
+        if ("0" == feature.properties.cng_(Meters)) {
+            return {
+                color: 'red',
+            };
+        } else {
+            return {
+                color: 'blue',
+            };
+        }
+    }
+		 
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
 			//add GeoJSON layer to the map once the file is loaded
 			L.geoJson(data {
-				style: function(feature){
-					return {"fill":"red",
-        "stroke-width":"3",
-        "fill-opacity":0.6};
-					},
-				onEachFeature: function(feature, layer){
-					layer.bindPopup(feature.properties.cng_(Meters));
-					}				
+				style: style				
 				}).addTo(map);
          });
      }
