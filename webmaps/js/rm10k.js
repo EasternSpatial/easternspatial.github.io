@@ -30,9 +30,7 @@
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
 			//add GeoJSON layer to the map once the file is loaded
-			L.geoJson(data {
-				style: style				
-				}).addTo(map);
+			L.geoJson(data, {style: style}).addTo(map);
          });
      }
      // you could use $(window).load(main);
