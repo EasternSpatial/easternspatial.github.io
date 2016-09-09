@@ -14,23 +14,25 @@
              // add GeoJSON layer to the map once the file is loaded
              L.geoJson(data).addTo(map);
          });
-		 
-		 function style(feature) {
-        if ("0.0" == feature.properties.cng_Meters) {
-            return {
-                color: 'red',
-            };
-        } else {
-            return {
-                color: 'blue',
-            };
-        }
-    }
-		 
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
-			//add GeoJSON layer to the map once the file is loaded
-			L.geoJson(data, {style: style}).addTo(map);
+             //add GeoJSON layer to the map once the file is loaded
+             L.geoJson(data, {
+                 style: function(feature) {
+                     return {
+                         color: "green"
+                     };
+                 },
+                 pointToLayer: function(feature, latlng) {
+                     return new L.CircleMarker(latlng, {
+                         radius: 10,
+                         fillOpacity: 0.85
+                     });
+                 },
+                 onEachFeature: function(feature, layer) {
+                     layer.bindPopup(feature.properties.cng_Meters);
+                 }
+             }).addTo(map);
          });
      }
      // you could use $(window).load(main);
