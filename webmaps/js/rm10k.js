@@ -19,10 +19,12 @@
 			//add GeoJSON layer to the map once the file is loaded
 			L.geoJson(data {
 				style: function(feature){
-					return {color: '#fff'};
+					return {"fill":"red",
+        "stroke-width":"3",
+        "fill-opacity":0.6};
 					},
 				onEachFeature: function(feature, layer){
-					layer.bindPopup("test");
+					layer.bindPopup(feature.properties.cng_(Meters));
 					}				
 				}).addTo(map);
          });
