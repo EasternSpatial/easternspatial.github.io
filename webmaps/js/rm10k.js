@@ -22,8 +22,8 @@
 					return {color: '#fff'};
 					},
 				onEachFeature: function(feature, layer){
-					layer.bindPopup("test")
-				
+					layer.bindPopup("test");
+					}				
 				}).addTo(map);
          });
      }
