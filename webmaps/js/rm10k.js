@@ -14,15 +14,23 @@
              // add GeoJSON layer to the map once the file is loaded
              L.geoJson(data).addTo(map);
          });
+		 
+		 // Creates a red marker with the coffee icon
+  var redMarker = L.AwesomeMarkers.icon({
+    icon: 'coffee',
+    markerColor: 'red'
+  });
+		 
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
              //add GeoJSON layer to the map once the file is loaded
              L.geoJson(data, {
-                 style: function(feature) {
-                     return {
-                         color: "red"
-                     };
-                 },
+                 style: redMarker //function(feature) {
+                     //return {
+                         //color: "red"
+                     //};
+                 //} 
+				 ,
                  pointToLayer: function(feature, latlng) {
                      return new L.CircleMarker(latlng, {
                          radius: 10,
