@@ -31,8 +31,7 @@
             extraClasses: '',
             icon: 'home',
             markerColor: 'blue',
-            iconColor: 'white',
-			html: ""
+            iconColor: 'white'
         },
 
         initialize: function (options) {
@@ -43,9 +42,9 @@
             var div = document.createElement('div'),
                 options = this.options;
 
-            //if (options.icon) {
+            if (options.icon) {
                 div.innerHTML = this._createInner();
-            //}
+            }
 
             if (options.bgPos) {
                 div.style.backgroundPosition =
@@ -77,7 +76,7 @@
                 }
             }
 
-            return "<i " + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + iconClass + " " + iconSpinClass + " " + iconColorClass + "'>" + options.html + </i>";
+            return "<i " + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + iconClass + " " + iconSpinClass + " " + iconColorClass + "'></i>";
         },
 
         _setIconStyles: function (img, name) {
@@ -113,7 +112,7 @@
 
             this._setIconStyles(div, 'shadow');
             return div;
-      },
+      }
     });
         
     L.AwesomeMarkers.icon = function (options) {
