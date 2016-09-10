@@ -20,7 +20,7 @@
              L.geoJson(data, {
                  style: function(feature) {
                      return {
-                         color: "green"
+                         color: "red"
                      };
                  },
                  pointToLayer: function(feature, latlng) {
