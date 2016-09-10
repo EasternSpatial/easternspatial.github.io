@@ -25,7 +25,8 @@
              prefix: 'fa',
              icon: '',
              iconColor: 'white',
-             markerColor: 'cadetblue'
+             markerColor: 'cadetblue',
+			 html: '1'
          });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
