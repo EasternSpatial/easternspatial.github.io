@@ -19,8 +19,8 @@
              //prefix: 'fa',
 			 //icon: 'flag-checkered',
 			 iconColor: 'white',
-             markerColor: 'black',
-			 text: "1"
+             markerColor: 'cadetblue',
+			 html: "1"
          });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
