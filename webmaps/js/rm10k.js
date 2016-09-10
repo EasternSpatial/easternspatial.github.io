@@ -14,31 +14,22 @@
              // add GeoJSON layer to the map once the file is loaded
              L.geoJson(data).addTo(map);
          });
-		 
-		 // Creates a red marker with the coffee icon
-  var redMarker = L.AwesomeMarkers.icon({
-    icon: 'coffee',
-    markerColor: 'red'
-  });
-		 
+         // Creates a marker
+         var redMarker = L.AwesomeMarkers.icon({
+             icon: 'fa-flag-checkered',
+             markerColor: 'red'
+         });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
              //add GeoJSON layer to the map once the file is loaded
              L.geoJson(data, {
-                 //style: function(feature) {
-                     //return {
-                         //color: "red"
-                     //};
-                 //},
                  pointToLayer: function(feature, latlng) {
                      return new L.marker(latlng, {
                          icon: redMarker
-						 //radius: 10,
-                         //fillOpacity: 0.85
                      });
                  },
                  //onEachFeature: function(feature, layer) {
-                     //layer.bindPopup(feature.properties.cng_Meters);
+                 //layer.bindPopup(feature.properties.cng_Meters);
                  //}
              }).addTo(map);
          });
