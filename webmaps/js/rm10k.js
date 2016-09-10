@@ -23,7 +23,7 @@
          });
          var markerIcon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             //icon: 'flag-checkered',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue'
          });
