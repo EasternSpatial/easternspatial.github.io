@@ -21,13 +21,75 @@
              iconColor: 'white',
              markerColor: 'cadetblue'
          });
-         var markerIcon = L.AwesomeMarkers.icon({
+         var km1Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
              icon: '1',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 //html: i+1
+			 html: "1km"
          });
+		 var km2Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "2km"
+         });
+		 var km3Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "3km"
+         });
+		 var km4Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "4km"
+         });
+		 var km5Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "5km"
+         });
+		 var km6Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "6km"
+         });
+		 var km7Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "7km"
+         });
+		 var km8Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "8km"
+         });
+		 var km9Icon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "9km"
+         });
+		 var defaultIcon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             icon: '1',
+             iconColor: 'white',
+             markerColor: 'cadetblue',
+			 html: "1km"
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
              //add GeoJSON layer to the map once the file is loaded
@@ -38,9 +100,54 @@
                          var marker = L.marker(latlng, {
                              icon: startIcon
                          });
+					if (feature.properties.cng_Meters ==
+                         "1000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km1Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "2000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km2Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "3000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km3Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "4000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km4Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "5000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km5Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "6000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km6Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "7000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km7Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "8000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km8Icon
+                         });
+					if (feature.properties.cng_Meters ==
+                         "9000.0") {
+                         var marker = L.marker(latlng, {
+                             icon: km9Icon
+                         });
                      } else {
                          var marker = L.marker(latlng, {
-                             icon: markerIcon
+                             icon: defaultIcon
                          });
                      };
                      return marker;
