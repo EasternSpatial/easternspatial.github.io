@@ -90,6 +90,7 @@
              iconColor: 'white',
              markerColor: 'cadetblue',
 			 html: "1km"
+		});
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
              //add GeoJSON layer to the map once the file is loaded
