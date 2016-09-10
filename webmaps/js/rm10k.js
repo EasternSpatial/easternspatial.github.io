@@ -100,47 +100,47 @@
                          var marker = L.marker(latlng, {
                              icon: startIcon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "1000.0") {
                          var marker = L.marker(latlng, {
                              icon: km1Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "2000.0") {
                          var marker = L.marker(latlng, {
                              icon: km2Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "3000.0") {
                          var marker = L.marker(latlng, {
                              icon: km3Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "4000.0") {
                          var marker = L.marker(latlng, {
                              icon: km4Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "5000.0") {
                          var marker = L.marker(latlng, {
                              icon: km5Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "6000.0") {
                          var marker = L.marker(latlng, {
                              icon: km6Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "7000.0") {
                          var marker = L.marker(latlng, {
                              icon: km7Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "8000.0") {
                          var marker = L.marker(latlng, {
                              icon: km8Icon
                          });
-					if (feature.properties.cng_Meters ==
+					} else if (feature.properties.cng_Meters ==
                          "9000.0") {
                          var marker = L.marker(latlng, {
                              icon: km9Icon
