@@ -23,73 +23,73 @@
          });
          var km1Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "1km"
+			 html: "1"
          });
 		 var km2Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "2km"
+			 html: "2"
          });
 		 var km3Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "3km"
+			 html: "3"
          });
 		 var km4Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "4km"
+			 html: "4"
          });
 		 var km5Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "5km"
+			 html: "5"
          });
 		 var km6Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "6km"
+			 html: "6"
          });
 		 var km7Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "7km"
+			 html: "7"
          });
 		 var km8Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "8km"
+			 html: "8"
          });
 		 var km9Icon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "9km"
+			 html: "9"
          });
 		 var defaultIcon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '1',
+             icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: "1km"
+			 html: ""
 		});
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
