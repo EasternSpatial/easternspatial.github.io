@@ -23,10 +23,10 @@
          });
          var markerIcon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-             icon: '',
+             icon: '1',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: feature.properties.cng_Meters
+			 //html: i+1
          });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
