@@ -25,21 +25,21 @@
          $.getJSON("features.geojson", function(data) {
              //add GeoJSON layer to the map once the file is loaded
              L.geoJson(data, {
-                 style: redMarker //function(feature) {
+                 //style: function(feature) {
                      //return {
                          //color: "red"
                      //};
-                 //} 
-				 ,
+                 //},
                  pointToLayer: function(feature, latlng) {
                      return new L.CircleMarker(latlng, {
-                         radius: 10,
-                         fillOpacity: 0.85
+                         icon: redMarker
+						 //radius: 10,
+                         //fillOpacity: 0.85
                      });
                  },
-                 onEachFeature: function(feature, layer) {
-                     layer.bindPopup(feature.properties.cng_Meters);
-                 }
+                 //onEachFeature: function(feature, layer) {
+                     //layer.bindPopup(feature.properties.cng_Meters);
+                 //}
              }).addTo(map);
          });
      }
