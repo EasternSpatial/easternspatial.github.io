@@ -16,8 +16,10 @@
          });
          // Creates a marker
          var redMarker = L.AwesomeMarkers.icon({
-             icon: 'flag-checkered',
-             markerColor: 'red'
+             prefix: 'fa',
+			 icon: 'flag-checkered',
+			 iconColor: 'black',
+             markerColor: 'white'
          });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
