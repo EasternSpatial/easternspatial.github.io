@@ -31,7 +31,7 @@
                      //};
                  //},
                  pointToLayer: function(feature, latlng) {
-                     return new L.CircleMarker(latlng, {
+                     return new L.marker(latlng, {
                          icon: redMarker
 						 //radius: 10,
                          //fillOpacity: 0.85
