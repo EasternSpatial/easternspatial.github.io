@@ -16,7 +16,7 @@
          });
          // Creates a marker
          var redMarker = L.AwesomeMarkers.icon({
-             //prefix: 'fa',
+             prefix: 'fa',
 			 //icon: 'flag-checkered',
 			 iconColor: 'white',
              markerColor: 'cadetblue',
