@@ -14,11 +14,17 @@
              // add GeoJSON layer to the map once the file is loaded
              L.geoJson(data).addTo(map);
          });
-         // Creates a marker
-         var redMarker = L.AwesomeMarkers.icon({
+         // Define markers
+         var startIcon = L.AwesomeMarkers.icon({
              prefix: 'fa',
-			 icon: 'flag-checkered',
-			 iconColor: 'white',
+             icon: 'flag-checkered',
+             iconColor: 'white',
+             markerColor: 'cadetblue'
+         });
+         var markerIcon = L.AwesomeMarkers.icon({
+             prefix: 'fa',
+             //icon: 'flag-checkered',
+             iconColor: 'white',
              markerColor: 'cadetblue'
          });
          // load 10k course route features
@@ -26,9 +32,20 @@
              //add GeoJSON layer to the map once the file is loaded
              L.geoJson(data, {
                  pointToLayer: function(feature, latlng) {
-                     return new L.marker(latlng, {
-                         icon: redMarker
-                     });
+                     if (feature.properties.cng_Meters ==
+                         "0.0") {
+                         var marker = L.marker(latlng, {
+                             icon: startIcon
+                         });
+                     } else {
+                         var marker = L.marker(latlng, {
+                             icon: markerIcon
+                         });
+                     };
+                     return marker;
+                     //return new L.marker(latlng, {
+                     //icon: startIcon
+                     //});
                  },
                  //onEachFeature: function(feature, layer) {
                  //layer.bindPopup(feature.properties.cng_Meters);
