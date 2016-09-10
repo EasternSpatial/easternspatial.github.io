@@ -26,7 +26,7 @@
              icon: '',
              iconColor: 'white',
              markerColor: 'cadetblue',
-			 html: (i+1)
+			 html: feature.properties.cng_Meters
          });
          // load 10k course route features
          $.getJSON("features.geojson", function(data) {
