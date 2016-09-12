@@ -228,7 +228,7 @@ d3.json("features.geojson", function(collection) {
     var begend = g.selectAll(".drinks").data(originANDdestination).enter()
         .append("circle", ".drinks").attr("r", 5).style("fill", "red").style(
             "opacity", "1");
-   
+    
         // when the user zooms in or out you need to reset
         // the view
     map.on("viewreset", reset);
@@ -246,10 +246,7 @@ d3.json("features.geojson", function(collection) {
             // cover our features BUT... since you might be using a big
             // circle to represent a 1 dimensional point, the circle
             // might get cut off.
-            text.attr("transform", function(d) {
-                return "translate(" + applyLatLngToLayer(d).x +
-                    "," + applyLatLngToLayer(d).y + ")";
-            });
+ 
             // for the points we need to convert from latlong
             // to map units
             begend.attr("transform", function(d) {
