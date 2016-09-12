@@ -279,7 +279,7 @@
 
         function transition(path) {
             path.transition()
-                .duration(12000)
+                .duration(19000)
                 .attrTween("stroke-dasharray", tweenDash)
                 //if you want to have it repeat the sequence
                  //then uncomment this piece
