@@ -338,7 +338,6 @@ d3.json("features.geojson", function(collection) {
             var point = map.latLngToLayerPoint(new L.LatLng(y, x));
             this.stream.point(point.x, point.y);
         } //end projectPoint
-});
 // similar to projectPoint this function converts lat/long to
 // svg coordinates except that it accepts a point from our 
 // GeoJSON
@@ -347,6 +346,9 @@ function applyLatLngToLayer(d) {
     var x = d.geometry.coordinates[0]
     return map.latLngToLayerPoint(new L.LatLng(y, x))
 }
+		
+		});
+
 		 
      }
      // you could use $(window).load(main);
