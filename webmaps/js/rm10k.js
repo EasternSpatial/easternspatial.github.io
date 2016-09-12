@@ -281,8 +281,8 @@
             path.transition()
                 .duration(7500)
                 .attrTween("stroke-dasharray", tweenDash);
-                if you want to have it repeat the sequence
-                 then uncomment this piece
+                //if you want to have it repeat the sequence
+                 //then uncomment this piece
                 .each("end", function() {
                     d3.select(this).call(transition);
                 }); // infinite loop
