@@ -14,10 +14,10 @@
          //maxZoom: 16
          //}).addTo(map);
          // load 10k course route
-         $.getJSON("10k.geojson", function(data) {
+         //$.getJSON("10k.geojson", function(data) {
              // add GeoJSON layer to the map once the file is loaded
-             L.geoJson(data).addTo(map);
-         });
+             //L.geoJson(data).addTo(map);
+         //});
          // Define markers
          var startIcon = L.AwesomeMarkers.icon({
              prefix: 'fa',
