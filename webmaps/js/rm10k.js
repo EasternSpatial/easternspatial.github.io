@@ -4,11 +4,15 @@
              center: [44.908, -75.83],
              zoom: 15
          });
-         L.tileLayer(
-             'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-                 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-                 maxZoom: 16
-             }).addTo(map);
+		 L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});.addToMap
+         //L.tileLayer(
+             //'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+                 //attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+                 //maxZoom: 16
+             //}).addTo(map);
          // load 10k course route
          $.getJSON("10k.geojson", function(data) {
              // add GeoJSON layer to the map once the file is loaded
