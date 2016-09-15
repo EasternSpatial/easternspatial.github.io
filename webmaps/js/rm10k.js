@@ -7,7 +7,8 @@
          L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
              maxZoom: 20,
              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-         }).addToMap;
+         }).addTo(Map);
+		 
          //L.tileLayer(
          //'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
          //attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
