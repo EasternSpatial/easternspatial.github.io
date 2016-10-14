@@ -277,6 +277,7 @@
                      var l = path.node().getTotalLength(); //total length of path
                      var i = d3.interpolateString("0," + l, l + "," + l); // interpolation of stroke-dasharray style attr
                      console.log(l)
+					 return function(d, i, a){
                      return function(t) {
 						t += pauseValues.lastT;
                          //t is fraction of time 0-1 since transition began
@@ -291,7 +292,8 @@
                          marker.attr("transform", "translate(" + p.x +
                              "," + p.y + ")"); //move marker
                          return i(t);
-                     }
+						 };
+                     };
                  } //end tweenDash
 				 
 				 d3.select('button').on('click',function(d,i){
