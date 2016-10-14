@@ -250,14 +250,27 @@
                      return point;
                  } //end pathStartPoint
 
-             function transition(path) {
-                     path.transition().duration(24000).attrTween(
-                             "stroke-dasharray", tweenDash)
+             var pauseValues = {
+				lastT: 0,
+				currentT: 0
+			};
+
+			var duration = 24000;
+			 
+			 function transition(path) {
+                     path.transition()
+					 .duration(duration - (duration * pauseValues.lastT))
+					 .attrTween("stroke-dasharray", tweenDash)
                          //if you want to have it repeat the sequence
                          //then uncomment this piece
                          .each("end", function() {
-                             d3.select(this).call(transition);
-                         }); // infinite loop
+							pauseValues = {
+								lastT: 0,
+								currentT: 0
+							};
+							transition()
+                             
+                         });
                  } //end transition
 
              function tweenDash() {
@@ -265,6 +278,7 @@
                      var i = d3.interpolateString("0," + l, l + "," + l); // interpolation of stroke-dasharray style attr
                      console.log(l)
                      return function(t) {
+						t += pauseValues.lastT;
                          //t is fraction of time 0-1 since transition began
                          var marker = d3.select("#marker");
                          console.log(t)
@@ -272,12 +286,32 @@
                              // along the line. In this case if l=50 and we're midway through
                              // the time then this would 25.
                          var p = path.node().getPointAtLength(t * l);
+						 pauseValues.currentT = t;
                          //Move the marker to that point
                          marker.attr("transform", "translate(" + p.x +
                              "," + p.y + ")"); //move marker
                          return i(t);
                      }
                  } //end tweenDash
+				 
+				 d3.select('button').on('click',function(d,i){
+  var self = d3.select(this);
+  if (self.text() == "Pause"){
+    self.text('Play');
+    circle.transition()
+      .duration(0);
+    setTimeout(function(){
+      pauseValues.lastT = pauseValues.currentT;
+    }, 100);
+  }else{
+    self.text('Pause');
+    transition();
+  }
+});
+transition();
+				 
+				 
+				 
                  // Use Leaflet to implement a D3 geometric transformation.
                  // the latLngToLayerPoint is a Leaflet conversion method:
                  //Returns the map layer point that corresponds to the given geographical
