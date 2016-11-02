@@ -1,28 +1,20 @@
  function main() {
-         var map = new L.Map('map', {
-             zoomControl: false,
-             center: [44.908, -75.83],
-             zoom: 15
-         });
-         L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        
+         var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
              maxZoom: 20,
              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-         }).addTo(map);
+         });
+		 var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+             maxZoom: 20,
+             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+         });
+		  var map = new L.Map('map', {
+             zoomControl: false,
+             center: [44.908, -75.83],
+             zoom: 15,
+			 layers: [googleSat, googleTerrain]
+         });
 		 
-		 //L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-		 //}).addTo(map);
-		 
-         //L.tileLayer(
-         //'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-         //attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-         //maxZoom: 16
-         //}).addTo(map);
-		 
-         // load 10k course route
-         //$.getJSON("10k.geojson", function(data) {
-             // add GeoJSON layer to the map once the file is loaded
-             //L.geoJson(data).addTo(map);
-         //});
          // Define markers
          var startIcon = L.AwesomeMarkers.icon({
              prefix: 'fa',
@@ -101,8 +93,7 @@
              html: ""
          });
          // load 10k course route features
-         $.getJSON("features.geojson", function(data) {
-             //add GeoJSON layer to the map once the file is loaded
+         var route10k = $.getJSON("features.geojson", function(data) {
              L.geoJson(data, {
                  pointToLayer: function(feature, latlng) {
                      if (feature.properties.cng_Meters ==
@@ -161,15 +152,23 @@
                          });
                      };
                      return marker;
-                     //return new L.marker(latlng, {
-                     //icon: startIcon
-                     //});
                  },
-                 //onEachFeature: function(feature, layer) {
-                 //layer.bindPopup(feature.properties.cng_Meters);
-                 //}
-             }).addTo(map);
+             })
          });
+		 
+		 var courses = L.layergroup([route10k]);
+		 
+		 var baseMaps = {
+			"googleSat": googleSat,
+			"googleTerrain": googleTerrain
+		 };
+		 
+		 var overlayMaps = {
+			"courses": courses 
+		 };
+		 
+		 L.control.layers(baseMaps, overlayMaps).addTo(map);
+		 
          // we will be appending the SVG to the Leaflet map pane
          // g (group) element will be inside the svg and it
          svg = d3.select(map.getPanes().overlayPane).append("svg"),

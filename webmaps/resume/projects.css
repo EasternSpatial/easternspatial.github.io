@@ -1,0 +1,857 @@
+	@import 'https://fonts.googleapis.com/css?family=Roboto:500,300';
+	
+	:root:before {
+		content: url(http://maps.nicholsonroad.com/images/attraction-15.svg);
+		visibility: hidden;
+		position: absolute;
+}
+    
+      html,
+	  body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background: hsl(36, 52%, 83%);
+		font-weight:300;
+      }
+	  
+	 #sidebar .mapboxgl-popup-close-button {
+		z-index: 500;
+		font-size: 45px;
+		font-size:2.7vw;
+		color: white;
+		width:auto;
+		height: auto;
+		padding: 1vw;
+		line-height:50%;
+		outline:none;
+}
+	  
+	 #sidebar {
+		display: block;
+		width: 33.333%;
+		position: absolute;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		font-weight:300;
+		top:40px;
+		overflow: hidden;
+		height: calc(100% - 40px);
+		background:#fff;
+		z-index:20;
+	 }
+	 
+	 	  
+	#welcome,
+	#introductory-tour	{
+		display: block;
+		background: rgb(242, 225, 197);
+		width: 33.333%;
+		position: absolute;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		font-weight:300;
+		top:40px;
+		overflow: hidden;
+		height: calc(100% - 40px);
+	}
+	#introductory-tour
+	{
+		display:none;
+	}
+	
+	#welcome a,
+	#sidebar a {
+		color: #000;
+		text-decoration:underline;
+	}
+	
+	#welcome a:hover,
+	#sidebar a:hover {
+		text-decoration:none;
+	}      
+	  
+	#sidebar h1,
+	#welcome h1 {
+		text-align: left;
+		background: hsl(1, 92%, 64%);
+		font-size:26px;
+		font-size: 1.5vw;
+		margin: 0;
+		padding: 16px;
+		padding: 1vw;
+		color: white;
+		margin: 0;
+		position: relative;
+	  }
+	  #welcome h1 {
+		  background: rgb(75, 71, 65);		  
+	  }
+	  
+	#sidebar img,
+	#sidebar iframe	{
+		max-width:100%;
+		width:100%;
+		min-width:100%;
+		height:auto;
+		margin-bottom: 4%;
+	}
+	#sidebar iframe {
+	    height: 300px;
+		height: 45vh;
+	}
+	img.welcome {
+		margin-bottom:30px;
+		opacity:0.75;
+		max-width:100%;
+		width:100%;
+		min-width:100%;
+		height:auto;
+	}
+	
+	img.bcer-logo {
+		opacity:0.75;
+		max-width:90%;
+		width:60%;
+		min-width:150px;
+		height:auto;
+		margin: 0 auto 20px;
+		display: block;
+		position: relative;
+	}
+	
+	img.bcer-explanation {
+		opacity:0.90;
+		max-width:90%;
+		width:60%;
+		min-width:150px;
+		height:auto;
+		margin: 0 auto 30px;
+		display: block;
+		position: relative;
+	}
+	  
+	#sidebar p,
+	#welcome p	  {
+		font-family: 'Roboto', sans-serif;
+		font-size: 16px;
+		font-size: 1vw;
+		margin: -6px 0 0 0;
+		padding: 0 8% 4%;
+		color: #000;
+		line-height:1.4em;
+	}
+	
+	#welcome p em {
+		opacity:0.7;
+	}
+	
+	#sidebar p iframe {
+		padding-top:4%;
+		height:300px;		
+	}
+	
+	#sidebar p img {
+		margin-top: 4%;	
+	}
+		
+	#sidebar p.source {
+		font-style:italic;
+		font-size: 10px;
+		font-size:0.7vw;
+		opacity:0.4;
+	}
+	
+	#chapter-listing {
+		margin: 10px auto 30px;
+		width: calc((100%/3)*1.5);
+	}
+	  
+	#chapter-listing button {
+		background: rgb(75, 71, 65);
+		display: block;
+		color: rgb(242, 225, 197);
+		text-transform: uppercase;
+		border: none;	
+		font-size:16px;
+		font-size:0.9vw;
+		font-family: 'Roboto', sans-serif;	
+		font-weight:300;
+		padding: 0.6vw;
+		width:100%;		
+		margin-bottom:1px;
+		cursor:pointer;
+		outline:none;
+	}
+	#chapter-listing button:first-child {
+		border-top-left-radius:5px;
+		border-top-right-radius:5px;			
+	}
+	
+	#chapter-listing button:last-child {
+		border-bottom-left-radius:5px;	
+		border-bottom-right-radius:5px;	
+		margin-bottom:none;		
+	}
+	
+	#chapter-listing .active {
+		opacity:1.0;
+		color: #fff;
+		background: url(http://maps.nicholsonroad.com/images/attraction-15.svg) no-repeat 0.6vw 50% hsl(1, 92%, 64%);
+		background-size:1.5vw;
+	}
+	
+	#chapter-listing button:hover {
+		opacity:0.8;
+	}
+	
+	#chapter-listing .upcoming {
+		opacity:0.3;
+		cursor:default;
+	}
+
+	#chapter-listing button.upcoming:hover {
+		background: rgb(75, 71, 65);
+		opacity:0.3;
+	}
+
+	#chapter-listing button strong {
+		padding-right: 0.6vw;
+		font-weight:700;
+	}
+	
+	#map {
+		height: calc(100% - 40px);
+		height: -o-calc(100% - 40px); /* opera */
+		height: -webkit-calc(100% - 40px); /* google, safari */
+		height: -moz-calc(100% - 40px); /* firefox */ 
+		width: calc((100%/3)*2);
+		width: -o-calc((100%/3)*2);/* opera */
+		width: -webkit-calc((100%/3)*2); /* google, safari */
+		width: -moz-calc((100%/3)*2); /* firefox */ 
+		padding: 0;
+        margin: 0;
+        background:transparent;
+		top:40px;
+		left: calc(100%/3);
+		left: -o-calc(100%/3);/* opera */
+		left: -webkit-calc(100%/3); /* google, safari */
+		left: -moz-calc(100%/3); /* firefox */ 
+	  }
+	  
+	  #map-borders div {
+		background: hsla(36, 13%, 29%, 0.15);
+		z-index:1;		
+	  }
+	.b-left,
+	.b-right {
+		width: 20px;
+		height: calc(100% - 80px);
+		display: block;
+		position: absolute;
+		top: 60px;
+	}
+	.b-left { left: calc(100%/3); }
+	.b-right { right: 0px; }
+	
+	.b-top,
+	.b-bottom {
+		width: calc(((100%/3)*2));
+		height: 20px;
+		display: block;
+		position: absolute;
+		left: calc((100%/3));
+	}
+	.b-top { top: 40px; }
+	.b-bottom { bottom: 0px; }
+	
+	#welcome-toggle {
+		display:none;
+	}
+      #header {
+      	height:40px;
+      	width:100%;
+      	margin: 0 0 -40px 0;
+      	background: #000;
+      	display:block;
+      	top:0;
+      	position:absolute;
+      	z-index:999999;
+      }
+      
+      #header h1 {
+      	font-family: 'Roboto', sans-serif;
+      	color:#fff;
+      	font-size:16px;
+      	text-transform:uppercase;
+     	padding: 10px 0;
+        margin:0 0 0 55px;
+        font-weight:600;
+      }
+      
+      #header h1 span {
+      	font-weight:300;
+      }
+	  
+	  
+	  
+	  
+#header #site-nav {
+		background:url(http://maps.nicholsonroad.com/images/maps-bcer-icon.svg) 50% 50% no-repeat;
+		background-size:60%;
+		height: 40px;
+		width: 40px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		outline: none;
+		border: none;
+		border-right: 1px solid rgba(255, 255, 255, 0.1);
+		cursor:pointer;
+	 }
+	 
+	 #header #site-nav:hover
+	 {
+		 background-color: hsl(1, 92%, 64%);
+		 border-right: 1px solid #000;
+	 }
+	 
+	 #header #site-nav.active {
+		 background-color: hsla(1, 92%, 64%, 0.75);
+		 border-right: 1px solid #000;
+	 }
+	 
+	 #main-menu {
+		background-color: rgba(0,0,0,0.9);
+		position: absolute;
+		top: 40px;
+		left: 0px;
+		z-index: 9999;
+		width: 350px;
+		height: auto;
+		font-family: 'Roboto', sans-serif;
+		font-weight:300;
+		font-size:12px;
+		padding-bottom:22px;
+		visibility:hidden;
+	 }
+	 
+	 #main-menu.active {
+		 visibility:visible;
+	 }
+	 	 
+	 #main-menu p {
+		color: #fff;
+		padding: 22px;
+		margin: 0;
+		line-height: 17px;
+		font-size: 13px;
+	 }
+	 
+	 #main-menu a {
+		 color:#fff;
+		 text-decoration:none;
+		 font-weight:500;
+	 }
+	 
+	 #main-menu a.project {
+		 border-top:1px solid rgba(255,255,255,0.5);
+		 margin-top:10px;
+		 padding:12px;
+		 color:#fff;
+		 text-decoration:none;
+		 font-weight:300;
+		 display:block;
+		text-transform: uppercase;
+		margin: 0 22px;		
+		padding-left: 30px;
+		background-position:7px 50%;
+		background-repeat:no-repeat;
+		background-size: 16px;
+	 }
+	 #main-menu a strong {
+		 font-weight:500;
+	 }
+	 
+	 #main-menu a.heights {
+		background-image: url(http://maps.nicholsonroad.com/images/maps-heights-icon.svg);
+	 }
+	 #main-menu a.bcer {
+		background-image: url(http://maps.nicholsonroad.com/images/maps-bcer-icon.svg);
+	 }
+	 #main-menu a.zones {
+		background-image: url(http://maps.nicholsonroad.com/zones/rbrtwhite-zones.svg);
+	 }
+	 
+	 #main-menu a.project:hover {
+		 background-color:hsl(1, 92%, 64%);
+	 }
+
+	      
+    /* --- Map Title --- */
+	a#map-title {
+		position: absolute;
+    	top: 70px;
+    	left: 25px;
+    	padding: 20px 25px;
+    	height: 45px;
+    	width: 220px;
+    	z-index: 999;
+    	background: rgba(0,0,0,0.75);
+	}
+	
+	#map-title img.icon {
+	    position: relative;
+    	float: left;
+    	display: inline-table;
+    	height:47px;
+    	width:47px;
+	}
+	
+	h2#title {
+		font-family: 'Roboto', sans-serif;
+      	color:#fff;
+      	font-size:28px;
+      	text-transform:uppercase;
+      	padding: 0;
+        margin: 0;
+        font-weight:600;
+	}
+	#map-title #title {
+	    position:absolute;
+	    display: block;
+        left: 92px;
+    	top:16px;
+    	width:150px;
+    	height:28px;
+	}
+	
+	h3#subject {
+		font-family: 'Roboto', sans-serif;
+      	color:#fff;
+      	font-size:19px;
+      	text-transform:uppercase;
+     	padding: 0;
+        margin: 0;
+        font-weight:300;
+	}
+	
+	#map-title h3 {
+        position:absolute;
+        display: block;
+    	left: 92px;
+    	top: 44px;
+    	width: 150px;
+    	height: 19px;
+
+	}
+
+	
+	/* --- Map --- */  
+	
+	
+	#map .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+		margin: 30px 30px 0 0;
+		float: right;
+}
+
+	nav#menu {
+        background: #fff;
+        position: absolute;
+        z-index: 1;
+        top: 56px;
+        right: 10px;
+        width: 100px;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    nav#menu a {
+        font-size: 12px;
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 8px;
+        text-decoration: none;
+        text-align: center;
+        border-left-width:30px;
+   		border-left-style:solid;
+   		background:#8e8e8e;
+   		border-left-color:#a7a7a7;
+    }
+
+    nav#menu a:hover {
+        background-color: #a7a7a7;
+        color: #404040;
+    }
+
+    nav#menu a.active {;
+        color: #ffffff;
+        background:#555555;
+    }
+
+    nav#menu a.active:hover {
+        border-left-width:32px;
+        background:#757575;
+    }
+    
+
+.mapboxgl-popup {
+    max-width: 400px;
+    font: 12px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.marker-title {
+    font-weight: 700;
+}
+
+.mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	opacity: 1;
+}
+
+html #map div.mapboxgl-popup-content {
+	padding:0px;
+}
+
+html #map .mapboxgl-popup-close-button {
+    z-index: 500;
+    font-size: 33px;
+    color: white;
+    width: 40px;
+}
+
+html #map .mapboxgl-popup-close-button:hover {
+	color: rgb(75, 71, 65);
+	background: rgba(0,0,0,0);
+}
+
+.mapboxgl-popup-content img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    margin-top: 40px;
+	margin-bottom: -6px;	
+}
+.mapboxgl-popup-content h1 {
+    text-align: center;
+    background: hsl(1, 92%, 64%);
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px;
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 0px;
+    width: calc(100% - 20px);
+}
+.mapboxgl-popup-content p {
+    text-align: left;
+    font-size: 12px;
+    margin: 0;
+    padding: 10px;
+}
+
+.mapboxgl-popup-content p span {
+    font-style: italic;
+}
+	
+html .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+	font-size:9px;
+	background-color: transparent;
+    color: rgba(0,0,0,0.5);	
+}
+
+html .mapboxgl-ctrl-icon.mapboxgl-ctrl-compass > div.arrow {
+    top: 30px;
+	left: -110px;
+	width:100px;
+	height:100px;
+    position: absolute;
+	background-image:url(http://maps.nicholsonroad.com/images/bcer-compass.svg);
+	background-position-x: 50%;
+	background-position-y: 50%;
+	margin:0;
+}
+
+html .mapboxgl-ctrl-icon.mapboxgl-ctrl-zoom-in,
+html .mapboxgl-ctrl-icon.mapboxgl-ctrl-zoom-out {
+	background-repeat: no-repeat;
+    background-position-y: 5px;
+}
+
+html .mapboxgl-ctrl-group {
+    border-radius: 2px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    overflow: hidden;
+    background: rgba(71, 67, 59, 0.2);
+}
+
+html .mapboxgl-ctrl-group > button {
+	width: 20px;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-bottom:none;
+	margin-bottom:1px;
+}
+
+html .mapboxgl-ctrl > button:last-child {
+	height:0px;
+	margin-bottom:0;
+}
+
+
+
+
+
+
+/* --- Simplebar --- */
+html .simplebar-track .simplebar-scrollbar {
+	-webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+	width:6px;
+	background: rgba(45, 43, 39, 0.3);
+}
+
+html .simplebar-track .simplebar-scrollbar:hover {
+	background: rgba(45, 43, 39, 0.8);
+}
+
+
+
+/* ---------------------------------------------------- */
+/* -------------------- ADD THIS ---------------------- */
+/* ---------------------------------------------------- */
+
+	#header .header-right {
+    	position: absolute;
+		right: 20px;
+		top: 9px;
+		z-index:99;
+    }
+	  
+	#header .header-right a {
+		font-size: 14px;
+    	text-transform: lowercase;
+    	text-decoration: none;
+    	color: #fff;
+		font-weight: 300;
+	}
+      
+    #header .header-right img {
+      	display: inline-block;
+      	vertical-align:middle;
+      	border-radius:16px;
+      	-webkit-border-radius:16px;
+      	-moz-border-radius:16px;
+      	zoom:1;
+      	text-decoration:none;
+      	margin-right: 10px;
+    }
+
+	html .addthis_inline_share_toolbox {
+		top: 0px;
+		position: relative;
+		height: 21px;
+		float: left;
+		border-right: 1px solid rgba(119, 119, 119, 0.29);
+		right: 10px;
+	}
+
+	html .at-style-responsive .at-share-btn {
+		padding: 1px;
+		margin: 2px 10px 0 0;
+	}
+
+	html .addthis_inline_share_toolbox a {
+		float:left;
+		margin: 0 10px 0 0;
+	}
+
+
+
+
+
+
+
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+/* --------------- Responsive Styles --------------- */
+/* ------------------------------------------------- */
+/* ------------------------------------------------- */
+
+@media only screen and (max-width: 767px) {
+	#map .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+		display:none;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+
+
+/* --- Header Bar --- */
+#header {
+	background: rgba(0,0,0,1);
+}
+#header h1 {
+	font-size:15px;
+	padding:12px 0;
+}
+#header h1 a {
+	font-size:0px;
+}
+#header h1 a img {
+	margin-top:0;
+	height:20px;
+	width:20px;
+      	border-radius:20px;
+      	-webkit-border-radius:20px;
+      	-moz-border-radius:20px;
+      	zoom:1;
+      	text-decoration:none;
+      	margin-right: 0px;
+}
+
+/* --- General --- */
+
+#more {
+	opacity:0.75;
+}
+
+/* --- Map ---*/
+	#map {
+		width: 100%;
+		left:0px;
+		height: calc(100% - 80px);
+		top: 40px;	
+	}
+	
+
+	#sidebar,
+	#welcome	{
+		width:100%;
+	}
+	
+	#sidebar h1,
+	#welcome h1 {
+		font-size: 20px;
+		padding: 12px;		
+	}
+	
+	#sidebar p,
+	#welcome p {
+		font-size: 14px;	
+		width: 80%;
+		margin: 0 auto;
+		padding: 0 0 10px;
+		line-height: 20px;
+
+	}	
+	
+	#sidebar img,
+	#sidebar iframe {
+		margin-bottom:0px;
+	}
+	
+	#sidebar p.source {
+		opacity: 0.8;
+		font-size: 8px;
+		text-decoration:none;
+	}
+	#sidebar a {
+		text-decoration:none;
+	}
+
+	#sidebar .mapboxgl-popup-close-button {
+		font-size:36px;
+		padding: 13px;
+	}
+
+	/* --- Welcome --- */
+	#welcome {
+		height: calc(100% - 80px);
+		display: block;
+		z-index: 18;
+	}
+	
+	#welcome-toggle {
+		display: block;
+		height: 40px;
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+		background: #f8514f;
+		border: none;
+		outline: none;
+		font-family: 'roboto';
+		color: #fff;
+		font-size: 16px;
+		font-weight: 300;
+		z-index: 19;
+	}
+	
+	img.welcome {
+		margin-bottom: 12px;
+	}
+	
+	img.bcer-logo,
+	img.bcer-explanation,
+	#chapter-listing	{
+		width:80%;
+	}
+	
+	#chapter-listing {
+		margin:10px auto 20px;
+	}
+	
+	#chapter-listing button {
+		font-size: 13px;
+		padding: 8px;		
+	}
+	
+	#chapter-listing .active {
+		background-size: 40px;
+		background-position-x: 10px;
+	}
+	
+	img.bcer-explanation {
+		margin-bottom:20px;
+	}
+
+	.b-left,
+	.b-right {
+		top: 50px;
+		width: 10px;
+		height: calc(100% - 100px);
+	}
+	.b-left {left:0px;}
+	.b-top,
+	.b-bottom {
+		width:100%;
+		left:0px;
+		height: 10px;
+	}
+	.b-bottom {
+		bottom:40px;
+	}
+
+	.mapboxgl-ctrl-top-right {
+		display:none;
+	}
+	
+	html .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+		font-size:7px;
+		height:14px;
+	}
+
+	#main-menu {
+		width:100%;
+	}
+
+
+
+}
+    

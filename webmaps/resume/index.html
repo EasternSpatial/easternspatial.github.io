@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BC Electric Railway Map | rbrtwhite</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta property="og:title" content="BC Electric Railway Map | rbrtwhite" />
+    <meta property="og:description" content="Did you know from 1890 to 1958 the BC Electric Railway Co. Ltd. installed and operated interurban and streetcar lines throughout Metro Vancouver and the Fraser Valley? Check out this interactive map to learn more!" />
+    <meta property="og:image" content="http://maps.nicholsonroad.com/images/robert-white-bcer-vancouver-interurban-map.jpg" />
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@rbrtwhite">
+	<meta name="twitter:creator" content="@rbrtwhite">
+	<meta name="twitter:title" content="BC Electric Railway Map">
+	<meta name="twitter:description" content="Did you know Vancouver was covered in streetcars and interurbans from 1890 to 1958? Explore this map to learn more!">
+	<meta name="twitter:image" content="http://maps.nicholsonroad.com/images/robert-white-bcer-vancouver-interurban-map.jpg">
+    <link rel="shortcut icon" href="http://maps.nicholsonroad.com/images/bcer-favicon.png" />
+    <link rel="stylesheet" href="http://maps.nicholsonroad.com/bcer/bcer.css?ver=2.1" type="text/css" media="all" />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="http://maps.nicholsonroad.com/js/simplebar.css" type="text/css" media="all" />
+  	<noscript><style>.simplebar {overflow-y: scroll;} </style></noscript>
+  </head>
+  
+  <body>
+	<!-- header bar -->
+    <div id="header">
+		<div id="menu-wrap">
+			<div id="site-nav" class="bcer"></div>
+			
+			<!-- site menu -->
+			<nav id="main-menu">
+				<p>I love maps, and I love to share information about Vancouver. This site is home to my various Vancouver mapping experiments - take a look below. I have many more in development, so check in every now and then to see what I'm up to! Send your questions or comments to me <a href="http://www.twitter.com/rbrtwhite" target="_blank"><strong>@rbrtwhite</strong></a>.</p>
+				<a class="project heights" href="/heights/"><strong>Vancouver</strong> Building Heights Map</a>
+				<a class="project bcer" href="/bcer/"><strong>BC</strong> Electric Railway Map</a>
+				<a class="project zones" href="/zones/"><strong>Vancouver</strong> Zoning Map</a>
+			</nav>
+		</div>
+		
+    	<h1>BC <span>Electric Railway Map</span>
+			<div class="header-right">
+				<div class="addthis_inline_share_toolbox"></div>
+				<a href="http://twitter.com/rbrtwhite">
+					<img src="//gravatar.com/avatar/3c0b5fc556d9f12e4579d31fdb9051bc?size=128" width="16" height="16" alt="Robert W. White" title="Robert W. White">Robert W. White</a>
+			</div>
+    	</h1>
+    </div>
+	
+	<button id="welcome-toggle">View & Explore Map</button>
+	<content id="sidebar" data-simplebar-direction="vertical">
+		<button id="poi-close" class="mapboxgl-popup-close-button" type="button">&times;</button>
+		<div id="poi-content"></div>
+	</content>
+	<content id="welcome" data-simplebar-direction="vertical">
+		<img class="welcome" src="http://maps.nicholsonroad.com/images/bcer-welcome.jpg" />
+		<img class="bcer-logo" src="http://maps.nicholsonroad.com/images/bcer-logo.svg" />
+		<div id="chapter-listing"></div>
+		<p>Did you know from 1890 to 1958 the BC Electric Railway Co. Ltd. installed and operated interurban and streetcar lines throughout Metro Vancouver and the Fraser Valley? Click the 'Introduction' button above or explore the map to learn more!</p>
+		<img class="bcer-explanation" src="http://maps.nicholsonroad.com/images/bcer-explanation.svg" />
+	</content>
+
+	<div id="map-borders">
+		<div class="b-left"></div>
+		<div class="b-right"></div>
+		<div class="b-top"></div>
+		<div class="b-bottom"></div>
+	</div>
+    <div id="map"></div>
+
+	<!-- because scripts -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5805c7d81bb23854"></script> 
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>      
+	<script src="http://maps.nicholsonroad.com/js/simplebar.js"></script>
+	<script src="http://maps.nicholsonroad.com/bcer/bcer.js"></script>  
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  </body>
+</html>
