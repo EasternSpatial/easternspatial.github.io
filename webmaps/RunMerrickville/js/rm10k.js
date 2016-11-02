@@ -156,7 +156,7 @@
              })
          });
 		 
-		 var courses = L.layergroup([route10k]);
+		 var courses = L.layerGroup([route10k]);
 		 
 		 var baseMaps = {
 			"googleSat": googleSat,
