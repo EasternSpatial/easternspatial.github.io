@@ -159,8 +159,8 @@
 		 //var courses = L.layerGroup([route10k]);
 		 
 		 var baseMaps = {
-			"googleSat": googleSat,
-			"googleTerrain": googleTerrain
+			"googleTerrain": googleTerrain,
+			"googleSat": googleSat			
 		 };
 		 
 		 //var overlayMaps = {
