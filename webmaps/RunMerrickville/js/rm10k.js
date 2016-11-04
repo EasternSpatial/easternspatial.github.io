@@ -93,7 +93,7 @@
              html: ""
          });
          // load 10k course route features
-         var route10k = $.getJSON("features.geojson", function(data) {
+         $.getJSON("features.geojson", function(data) {
              L.geoJson(data, {
                  pointToLayer: function(feature, latlng) {
                      if (feature.properties.cng_Meters ==
@@ -153,21 +153,21 @@
                      };
                      return marker;
                  },
-             })
+             }).addTo(map);
          });
 		 
-		 var courses = L.layerGroup([route10k]);
+		 //var courses = L.layerGroup([route10k]);
 		 
 		 var baseMaps = {
 			"googleSat": googleSat,
 			"googleTerrain": googleTerrain
 		 };
 		 
-		 var overlayMaps = {
-			"courses": courses 
-		 };
+		 //var overlayMaps = {
+			//"courses": courses 
+		 //};
 		 
-		 L.control.layers(baseMaps, overlayMaps).addTo(map);
+		 L.control.layers(baseMaps).addTo(map);
 		 
          // we will be appending the SVG to the Leaflet map pane
          // g (group) element will be inside the svg and it
