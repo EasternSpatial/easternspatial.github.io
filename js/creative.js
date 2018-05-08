@@ -60,5 +60,12 @@
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
         }
     });
+	
+	// JQuery for layer stack animation
+	$(window).scroll(function() {
+        var scrollTop = $(window).scrollTop();
+        var imgPos = (scrollTop / -10) + 'px';
+        $('.iso-layer-top').find('img').css('transform', 'translateY(' + imgPos + ')');
+    });
 
 })(jQuery); // End of use strict
