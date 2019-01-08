@@ -61,6 +61,7 @@
         }
     });
 	
+	
 	// JQuery for layer stack animation
 	$(window).scroll(function() {
         var scrollTop = $(window).scrollTop();
