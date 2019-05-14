@@ -1,248 +1,244 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Chamber Member Locator</title>
-  <meta name='robots' content='noindex, nofollow' />
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel=
-  'stylesheet' type="text/css" />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js' type=
-  "text/javascript">
-</script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel=
-  'stylesheet' type="text/css" />
-  <style>
+	<title>Chamber Member Locator</title>
+	<meta content='noindex, nofollow' name='robots'>
+	<meta content='initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type="text/css">
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js' type="text/javascript">
+	</script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' type="text/css">
+	<style>
 
-        body {
-          color:#404040;
-          font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-          margin:0;
-          padding:0;
-          -webkit-font-smoothing:antialiased;
-        }
+	       body {
+	         color:#404040;
+	         font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+	         margin:0;
+	         padding:0;
+	         -webkit-font-smoothing:antialiased;
+	       }
 
-        * {
-          -webkit-box-sizing:border-box;
-          -moz-box-sizing:border-box;
-          box-sizing:border-box;
-        }
+	       * {
+	         -webkit-box-sizing:border-box;
+	         -moz-box-sizing:border-box;
+	         box-sizing:border-box;
+	       }
 
-        .sidebar {
-          position:absolute;
-          width:33.3333%;
-          height:100%;
-          top:0;left:0;
-          overflow:hidden;
-          border-right:1px solid rgba(0,0,0,0.25);
-        }
-        .pad2 {
-          padding:20px;
-        }
+	       .sidebar {
+	         position:absolute;
+	         width:33.3333%;
+	         height:100%;
+	         top:0;left:0;
+	         overflow:hidden;
+	         border-right:1px solid rgba(0,0,0,0.25);
+	       }
+	       .pad2 {
+	         padding:20px;
+	       }
 
-        .map {
-          position:absolute;
-          left:33.3333%;
-          width:66.6666%;
-          top:0;bottom:0;
-        }
+	       .map {
+	         position:absolute;
+	         left:33.3333%;
+	         width:66.6666%;
+	         top:0;bottom:0;
+	       }
 
-        h1 {
-          font-size:22px;
-          margin:0;
-          font-weight:400;
-          line-height: 20px;
-          padding: 20px 2px;
-        }
+	       h1 {
+	         font-size:22px;
+	         margin:0;
+	         font-weight:400;
+	         line-height: 20px;
+	         padding: 20px 2px;
+	       }
 
-        a {
-          color:#404040;
-          text-decoration:none;
-        }
+	       a {
+	         color:#404040;
+	         text-decoration:none;
+	       }
 
-        a:hover {
-          color:#101010;
-        }
+	       a:hover {
+	         color:#101010;
+	       }
 
-        .heading {
-          background:#fff;
-          border-bottom:1px solid #eee;
-          min-height:60px;
-          line-height:60px;
-          padding:0 10px;
-          background-color: #6495ed;
-          color: #fff;
-        }
+	       .heading {
+	         background:#fff;
+	         border-bottom:1px solid #eee;
+	         min-height:60px;
+	         line-height:60px;
+	         padding:0 10px;
+	         background-color: #6495ed;
+	         color: #fff;
+	       }
 
-        .listings {
-          height:100%;
-          overflow:auto;
-          padding-bottom:60px;
-        }
+	       .listings {
+	         height:100%;
+	         overflow:auto;
+	         padding-bottom:60px;
+	       }
 
-        .listings .item {
-          display:block;
-          border-bottom:1px solid #eee;
-          padding:10px;
-          text-decoration:none;
-        }
+	       .listings .item {
+	         display:block;
+	         border-bottom:1px solid #eee;
+	         padding:10px;
+	         text-decoration:none;
+	       }
 
-        .listings .item:last-child { border-bottom:none; }
-        .listings .item .title {
-          display:block;
-          color:#6495ed;
-          font-weight:700;
-        }
+	       .listings .item:last-child { border-bottom:none; }
+	       .listings .item .title {
+	         display:block;
+	         color:#6495ed;
+	         font-weight:700;
+	       }
 
-        .listings .item .title small { font-weight:400; }
-        .listings .item.active .title,
-        .listings .item .title:hover { color:#b0c4de; }
-        .listings .item.active {
-          background-color:#f8f8f8;
-        }
-        ::-webkit-scrollbar {
-          width:3px;
-          height:3px;
-          border-left:0;
-          background:rgba(0,0,0,0.1);
-        }
-        ::-webkit-scrollbar-track {
-          background:none;
-        }
-        ::-webkit-scrollbar-thumb {
-          background:#00853e;
-          border-radius:0;
-        }
+	       .listings .item .title small { font-weight:400; }
+	       .listings .item.active .title,
+	       .listings .item .title:hover { color:#b0c4de; }
+	       .listings .item.active {
+	         background-color:#f8f8f8;
+	       }
+	       ::-webkit-scrollbar {
+	         width:3px;
+	         height:3px;
+	         border-left:0;
+	         background:rgba(0,0,0,0.1);
+	       }
+	       ::-webkit-scrollbar-track {
+	         background:none;
+	       }
+	       ::-webkit-scrollbar-thumb {
+	         background:#00853e;
+	         border-radius:0;
+	       }
 
-        .marker {
-          border: none;
-          cursor: pointer;
-          height: 26px;
-          width: 26px;
-          background-image: url(marker26.png);
-          background-color: rgba(0, 0, 0, 0);
-        }
+	       .marker {
+	         border: none;
+	         cursor: pointer;
+	         height: 26px;
+	         width: 26px;
+	         background-image: url(marker26.png);
+	         background-color: rgba(0, 0, 0, 0);
+	       }
 
-        .clearfix { display:block; }
-        .clearfix:after {
-          content:'.';
-          display:block;
-          height:0;
-          clear:both;
-          visibility:hidden;
-        }
+	       .clearfix { display:block; }
+	       .clearfix:after {
+	         content:'.';
+	         display:block;
+	         height:0;
+	         clear:both;
+	         visibility:hidden;
+	       }
 
-        /* Marker tweaks */
-        .mapboxgl-popup {
-          padding-bottom: 50px;
-        }
+	       /* Marker tweaks */
+	       .mapboxgl-popup {
+	         padding-bottom: 50px;
+	       }
 
-        .mapboxgl-popup-close-button {
-          display:none;
-        }
-        .mapboxgl-popup-content {
-          font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-          padding:0;
-          width:180px;
-        }
-        .mapboxgl-popup-content-wrapper {
-          padding:1%;
-        }
-        .mapboxgl-popup-content h3 {
-          background:#b0c4de;
-          color:#fff;
-          margin:0;
-          display:block;
-          padding:10px;
-          border-radius:3px 3px 0 0;
-          font-weight:700;
-          margin-top:-15px;
-        }
+	       .mapboxgl-popup-close-button {
+	         display:none;
+	       }
+	       .mapboxgl-popup-content {
+	         font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+	         padding:0;
+	         width:180px;
+	       }
+	       .mapboxgl-popup-content-wrapper {
+	         padding:1%;
+	       }
+	       .mapboxgl-popup-content h3 {
+	         background:#b0c4de;
+	         color:#fff;
+	         margin:0;
+	         display:block;
+	         padding:10px;
+	         border-radius:3px 3px 0 0;
+	         font-weight:700;
+	         margin-top:-15px;
+	       }
 
-        .mapboxgl-popup-content h4 {
-          margin:0;
-          display:block;
-          padding: 10px 10px 10px 10px;
-          font-weight:400;
-        }
+	       .mapboxgl-popup-content h4 {
+	         margin:0;
+	         display:block;
+	         padding: 10px 10px 10px 10px;
+	         font-weight:400;
+	       }
 
-        .mapboxgl-popup-content div {
-          padding:10px;
-        }
+	       .mapboxgl-popup-content div {
+	         padding:10px;
+	       }
 
-        .mapboxgl-container .leaflet-marker-icon {
-          cursor:pointer;
-        }
+	       .mapboxgl-container .leaflet-marker-icon {
+	         cursor:pointer;
+	       }
 
-        .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
-          margin-top: 15px;
-        }
+	       .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+	         margin-top: 15px;
+	       }
 
-        .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-          border-bottom-color: #91c949;
-        }
+	       .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+	         border-bottom-color: #91c949;
+	       }
 
-  </style>
+	</style>
 </head>
-
 <body>
-  <div class='sidebar'>
-    <div class='heading'>
-      <h1>Chamber Members</h1>
-    </div>
+	<div class='sidebar'>
+		<div class='heading'>
+			<h1>Chamber Members</h1>
+		</div>
+		<div class='listings' id='listings'></div>
+	</div>
+	<div class='map' id='map'></div>
+	<script>
+	 mapboxgl.accessToken = 'pk.eyJ1IjoibWRjb2MiLCJhIjoiY2p0cWdzcWhsMGZjcjQ0bGxudnN1dnZobSJ9.C7MVMwhzHd0hITpgN4jTYw';
 
-    <div id='listings' class='listings'></div>
-  </div>
+	 // This adds the map
+	   var map = new mapboxgl.Map({
+	   // container id specified in the HTML
+	   container: 'map',
+	   // style URL
+	       style: 'mapbox://styles/mdcoc/cju93n1ul26dk1fnwpepugz5e',
+	   // initial position in [long, lat] format
+	   center: [-75.848692, 44.850293],
+	   // initial zoom
+	   zoom: 11.43,
+	   scrollZoom: true
+	 });
+	  
+	   // Query the source layer for member locations
+	   //console.log(map.getSource('composite').vectorLayerIds);
+	   map.on('load', function() {
+	   var stores = map.querySourceFeatures('composite',{sourceLayer:'CoC_member_geolocations'});
+	   console.log(stores);
+	   buildLocationList(stores);
 
-  <div id='map' class='map'></div>
-  <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWRjb2MiLCJhIjoiY2p0cWdzcWhsMGZjcjQ0bGxudnN1dnZobSJ9.C7MVMwhzHd0hITpgN4jTYw';
+	 });
+	   
+	   
+	   function buildLocationList(stores) {
+	   
+	   for (i = 0; i < stores.features.length; i++) {
+	     var currentStore = stores.features[i];
+	     var prop = currentStore.properties;
 
-  // This adds the map
-	var map = new mapboxgl.Map({
-    // container id specified in the HTML
-    container: 'map',
-    // style URL
-        style: 'mapbox://styles/mdcoc/cju93n1ul26dk1fnwpepugz5e',
-    // initial position in [long, lat] format
-    center: [-75.848692, 44.850293],
-    // initial zoom
-    zoom: 11.43,
-    scrollZoom: true
-  });
-   
-	//console.log(map.getSource('composite').vectorLayerIds);
-    map.on('load', function() {
-    var stores = map.querySourceFeatures('composite',{sourceLayer:'CoC_member_geolocations'});
-	console.log(stores);
-	buildLocationList(stores);
+	     var listings = document.getElementById('listings');
+	     var listing = listings.appendChild(document.createElement('div'));
+	     listing.className = 'item';
+	     listing.id = "listing-" + i;
 
-  });
-	
-	
-	function buildLocationList(stores) {
-	
-    for (i = 0; i < stores.features.length; i++) {
-      var currentStore = stores.features[i];
-      var prop = currentStore.properties;
+	     var link = listing.appendChild(document.createElement('a'));
+	     link.href = '#';
+	     link.className = 'title';
+	     link.dataPosition = i;
+	     link.innerHTML = prop.Merchant;
 
-      var listings = document.getElementById('listings');
-      var listing = listings.appendChild(document.createElement('div'));
-      listing.className = 'item';
-      listing.id = "listing-" + i;
-
-      var link = listing.appendChild(document.createElement('a'));
-      link.href = '#';
-      link.className = 'title';
-      link.dataPosition = i;
-      link.innerHTML = prop.Merchant;
-
-      var details = listing.appendChild(document.createElement('div'));
-      details.innerHTML = prop.Street;
-      details.innerHTML += ' &middot; ' + prop.Phone;
- 	}
-	
-	}
-	
-  //]]>
-  </script>
+	     var details = listing.appendChild(document.createElement('div'));
+	     details.innerHTML = prop.Street;
+	     details.innerHTML += ' &middot; ' + prop.Phone;
+	   }
+	   
+	   }
+	   
+	 //]]>
+	</script>
 </body>
 </html>
