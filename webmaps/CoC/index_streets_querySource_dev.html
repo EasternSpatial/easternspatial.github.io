@@ -213,7 +213,7 @@
     map.on('load', function() {
     var stores = map.querySourceFeatures('composite',{sourceLayer:'CoC_member_geolocations'});
 	console.log(stores);
-	//buildLocationList(stores);
+	buildLocationList(stores);
 
   });
 	
@@ -221,7 +221,7 @@
 	function buildLocationList(stores) {
 	
     for (i = 0; i < stores.features.length; i++) {
-      var currentStore = stores[i];
+      var currentStore = stores.features[i];
       var prop = currentStore.properties;
 
       var listings = document.getElementById('listings');
