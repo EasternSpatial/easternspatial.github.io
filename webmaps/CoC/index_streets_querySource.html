@@ -218,8 +218,8 @@
 	      
 	      function buildLocationList(stores) {
 	      
-	      for (i = 0; i < stores.features.length; i++) {
-	        var currentStore = stores.features[i];
+	      for (i = 0; i < stores.length; i++) {
+	        var currentStore = stores[i];
 	        var prop = currentStore.properties;
 
 	        var listings = document.getElementById('listings');
