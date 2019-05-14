@@ -205,12 +205,13 @@
 	    });
 	     
 	      // Query the source layer for member locations
-	      //console.log(map.getSource('composite').vectorLayerIds);
-	      map.on('load', function() {
+	      //console.log(map.getSource('composite').vectorLayerIds);	   
+		  map.on('load', function() {
 	      var stores = map.querySourceFeatures('composite',{
 	       sourceLayer:'CoC_member_geolocations'
 	       });
 	      console.log(stores);
+		
 	      buildLocationList(stores);
 
 	    });
@@ -218,8 +219,8 @@
 	      
 	      function buildLocationList(stores) {
 	      
-	      for (i = 0; i < stores.features.length; i++) {
-	        var currentStore = stores.features[i];
+	      for (i = 0; i < stores.length; i++) {
+	        var currentStore = stores[i];
 	        var prop = currentStore.properties;
 
 	        var listings = document.getElementById('listings');
