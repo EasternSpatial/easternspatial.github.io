@@ -211,7 +211,8 @@
    
 	//console.log(map.getSource('composite').vectorLayerIds);
     var stores = map.querySourceFeatures('composite',{sourceLayer:'CoC_member_geolocations'});
-	buildLocationList(stores);
+	console.log(stores);
+	//buildLocationList(stores);
 	
 	function buildLocationList(stores) {
 	
