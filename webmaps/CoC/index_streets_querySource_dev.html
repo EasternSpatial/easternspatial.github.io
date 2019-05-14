@@ -209,24 +209,9 @@
     scrollZoom: true
   });
    
-	//map.on('load', function (e) {
-	//map.addSource('coc-members', {
-      //"type": "geojson",
-      //"data": 'https://api.mapbox.com/datasets/v1/mdcoc/cjvh2t9nimz4g33qux67trx4a/features?access_token=pk.eyJ1IjoibWRjb2MiLCJhIjoiY2p0cWdzcWhsMGZjcjQ0bGxudnN1dnZobSJ9.C7MVMwhzHd0hITpgN4jTYw'
-    //});
-	//var wasLoaded = false;
-	//map.on('render', function() {
-    //if (!map.loaded()) return;
-	//if (!map.loaded() || wasLoaded) return;
+	//console.log(map.getSource('composite').vectorLayerIds);
     var stores = map.querySourceFeatures('composite',{sourceLayer:'CoC_member_geolocations');
-    //console.log(map.getSource('composite').vectorLayerIds);
 	buildLocationList(stores);
-    //wasLoaded = true;
-	//});
-	//});
-	 
-		
-	
 	
 	function buildLocationList(stores) {
 	
