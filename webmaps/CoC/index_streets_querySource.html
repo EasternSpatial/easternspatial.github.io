@@ -223,9 +223,9 @@
     if (!map.loaded()) return;
 	//if (!map.loaded() || wasLoaded) return;
     var stores = map.querySourceFeatures('coc-members');
-    console.log(stores);
-	//buildLocationList(stores);
-    //wasLoaded = true;
+    //console.log(stores);
+	buildLocationList(stores);
+    wasLoaded = true;
 	});
 	});
 	 
