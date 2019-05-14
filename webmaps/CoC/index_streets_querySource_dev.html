@@ -218,9 +218,9 @@
 	map.on('render', function() {
     if (!map.loaded()) return;
 	//if (!map.loaded() || wasLoaded) return;
-    var stores = map.querySourceFeatures('coc-members');
-    console.log(map.getSource('composite').vectorLayerIds);
-	//buildLocationList(stores);
+    var stores = map.querySourceFeatures('CoC_member_geolocations');
+    //console.log(map.getSource('composite').vectorLayerIds);
+	buildLocationList(stores);
     //wasLoaded = true;
 	});
 	});
