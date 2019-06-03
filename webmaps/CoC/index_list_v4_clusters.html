@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chamber Member Locator</title>
+	<meta content='noindex, nofollow' name='robots'>
+	<meta content='initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type="text/css">
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js' type="text/javascript">
+	import java.util.ArrayList;
+	
+	function flyToOverview() {
+		map.flyTo({
+		center: [-75.850, 44.899],
+	    zoom: 11.26
+		});
+	}
+	
+	</script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' type="text/css">
+	<style>
+
+	          body {
+	            color:#404040;
+	            font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+	            margin:0;
+	            padding:0;
+	            -webkit-font-smoothing:antialiased;
+	          }
+
+	          * {
+	            -webkit-box-sizing:border-box;
+	            -moz-box-sizing:border-box;
+	            box-sizing:border-box;
+	          }
+
+	          .sidebar {
+	            position:absolute;
+	            width:33.3333%;
+	            height:100%;
+	            top:0;left:0;
+	            overflow: auto;
+	            border-right:1px solid rgba(0,0,0,0.25);
+	          }
+	          .pad2 {
+	            padding:20px;
+	          }
+
+	          .map {
+	            position:absolute;
+	            left:33.3333%;
+	            width:66.6666%;
+	            top:0;bottom:0;
+	          }
+
+	          h1 {
+	            font-size:22px;
+	            margin:0;
+	            font-weight:400;
+	            line-height: 20px;
+	            padding: 20px 2px;
+	          }
+
+	          a {
+	            color:#404040;
+	            text-decoration:none;
+	          }
+
+	          a:hover {
+	            color:#101010;
+	          }
+
+	          .heading {
+	            background:#fff;
+	            border-bottom:1px solid #eee;
+	            min-height:60px;
+	            line-height:60px;
+	            padding:0 10px;
+	            background-color: #fff;
+	            color: #6495ed;
+	          }
+
+	          .listings {
+	            height:100%;
+	            overflow:auto;
+	            padding-bottom:0px;
+	          }
+
+	          .listings .item {
+	            display:block;
+	            border-bottom:1px solid #6495ed;
+	            padding:0px;
+	            text-decoration:none;
+	          }
+
+	          .listings .item:last-child { border-bottom:none; }
+	          .listings .item .title {
+	            display:block;
+	            color:#6495ed;
+	            font-weight:700;
+	          }
+
+	          .listings .item .title small { font-weight:400; }
+	          .listings .item.active .title,
+	          .listings .item .title:hover { color:#b0c4de; }
+	          .listings .item.active {
+	            background-color:#f8f8f8;
+	          }
+	          ::-webkit-scrollbar {
+	            width:3px;
+	            height:3px;
+	            border-left:0;
+	            background:rgba(0,0,0,0.1);
+	          }
+	          ::-webkit-scrollbar-track {
+	            background:none;
+	          }
+	          ::-webkit-scrollbar-thumb {
+	            background:#00853e;
+	            border-radius:0;
+	          }
+
+	          .marker {
+	            border: none;
+	            cursor: pointer;
+	            height: 26px;
+	            width: 26px;
+	            background-image: url(marker26.png);
+	            background-color: rgba(0, 0, 0, 0);
+	          }
+
+	          .clearfix { display:block; }
+	          .clearfix:after {
+	            content:'.';
+	            display:block;
+	            height:0;
+	            clear:both;
+	            visibility:hidden;
+	          }
+
+	          /* Marker tweaks */
+	          .mapboxgl-popup {
+	            padding-bottom: 50px;
+	          }
+
+	          .mapboxgl-popup-close-button {
+	            display:none;
+	          }
+	          .mapboxgl-popup-content {
+	            font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+	            padding:0;
+	            width:180px;
+	          }
+	          .mapboxgl-popup-content-wrapper {
+	            padding:1%;
+	          }
+	          .mapboxgl-popup-content h3 {
+	            background:#b0c4de;
+	            color:#fff;
+	            margin:0;
+	            display:block;
+	            padding:10px;
+	            border-radius:3px 3px 0 0;
+	            font-weight:700;
+	            margin-top:-15px;
+	          }
+
+	          .mapboxgl-popup-content h4 {
+	            margin:0;
+	            display:block;
+	            padding: 10px 10px 10px 10px;
+	            font-weight:400;
+	          }
+
+	          .mapboxgl-popup-content div {
+	            padding:10px;
+	          }
+
+	          .mapboxgl-container .leaflet-marker-icon {
+	            cursor:pointer;
+	          }
+
+	          .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+	            margin-top: 15px;
+	          }
+
+	          .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+	            border-bottom-color: #91c949;
+	          }
+			  
+		.collapsible {
+		  background-color: #777;
+		  color: white;
+		  cursor: pointer;
+		  padding: 18px;
+		  width: 100%;
+		  border: none;
+		  text-align: left;
+		  outline: none;
+		  font-size: 15px;
+		}
+
+		.active, .collapsible:hover {
+		  background-color: #555;
+		}
+
+
+
+	</style>
+
+</head>
+<body>
+	<div class='sidebar'>
+		<div class='heading'>
+			<h1><a href="" onClick='flyToOverview();'>Merrickville-Wolford and District Chamber of Commerce</a></h1>
+				<button class="collapsible" id='btnShops'>Shops</button>
+					<div class='listings' id='shop_listings'></div>
+				<button class="collapsible" id='btnAccom'>Accommodations</button>
+					<div class='listings' id='accom_listings'></div>
+				<button class="collapsible" id='btnFood'>Food and Drink</button>
+					<div class='listings' id='food_listings'></div>
+				<button class="collapsible" id='btnBusiness'>Business</button>
+					<div class='listings' id='business_listings'></div>
+				<button class="collapsible" id='btnArt'>Art</button>
+					<div class='listings' id='art_listings'></div>
+				<button class="collapsible" id='btnService'>Service</button>
+					<div class='listings' id='service_listings'></div>
+						
+		</div>
+	</div>
+	<div class='map' id='map'></div>
+	
+
+	
+<script>
+	
+	var memberList = [];
+	
+	  // This will let you use the .remove() function later on
+		  if (!('remove' in Element.prototype)) {
+			Element.prototype.remove = function() {
+			  if (this.parentNode) {
+				  this.parentNode.removeChild(this);
+			  }
+			};
+		  }
+	    //this token gives access to the MDCoC styles, tiles, and datasets stored on Mapbox
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWRjb2MiLCJhIjoiY2p0cWdzcWhsMGZjcjQ0bGxudnN1dnZobSJ9.C7MVMwhzHd0hITpgN4jTYw';
+
+	    // This adds the map
+	      var map = new mapboxgl.Map({
+	      // container id specified in the HTML
+	      container: 'map',
+	      // style URL
+	          style: 'mapbox://styles/mdcoc/cju93n1ul26dk1fnwpepugz5e',
+	      // initial position in [long, lat] format
+		  // this is a large zoom area to ensure that all 
+		  // member locations are returned in the list of features
+	      center: [-75.866, 44.897],
+	      // initial zoom
+		  zoom: 11.29,
+	      scrollZoom: true
+	    });
+
+ 
+		  map.on('load', function() {
+		  
+			map.addSource("CoC_member_geolocations", {
+			type: "geojson",
+			data: "?handler=CoC_member_geolocations_v4",
+			cluster: true,
+			clusterMaxZoom: 18, // Max zoom to cluster points on
+			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+			});
+			 
+			map.addLayer({
+                id: 'clusters',
+                type: 'circle',
+                source: 'CoC_member_geolocations',
+                paint: {
+                    'circle-color': {
+                        property: 'point_count',
+                        type: 'interval',
+                        stops: [
+                            [0, '#41A337'],
+                            [5, '#2D7026'],
+                            [10, '#0B5703'],
+                        ]
+                    },
+                    'circle-radius': {
+                        property: 'point_count',
+                        type: 'interval',
+                        stops: [
+                            [0, 20],
+                            [5, 30],
+                            [15, 40]
+                        ]
+                    }
+                }
+            });
+
+            map.addLayer({
+                id: 'cluster-count',
+                type: 'symbol',
+                source: 'CoC_member_geolocations',
+                filter: ['has', 'point_count'],
+                layout: {
+                    'text-field': '{point_count}',
+                    'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+                    'text-size': 12
+                }
+            });
+
+            map.addLayer({
+                id: 'member',
+                type: 'circle',
+                source: 'CoC_member_geolocations',
+                filter: ['!has', 'point_count'],
+                paint: {
+                    'circle-color': '#1EF008',
+                    'circle-radius': 6,
+                    'circle-stroke-width': 1,
+                    'circle-stroke-color': '#fff'
+                }
+            });
+ 
+  
+	      // Query the source layer for CoC member locations
+		  // querySourceFeatures returns ONLY those features that are
+		  // in the current viewport
+	      //console.log(map.getSource('composite').vectorLayerIds);	  		  
+	      var stores = map.querySourceFeatures('composite',{
+	       sourceLayer:'CoC_member_geolocations_v4'
+	       });
+
+	      //console.log(stores);
+		  buildCatagoryList();
+	      buildLocationList(stores);
+		  //the following calls are really dumb but I'm out of time!
+		  //the collapsible lists are all expanded by default after page load, so
+		  //call each collapsible button click event twice to collapse
+		  document.getElementById("btnShops").click();
+		  document.getElementById("btnShops").click();
+		  document.getElementById("btnAccom").click();
+		  document.getElementById("btnAccom").click();
+		  document.getElementById("btnFood").click();
+		  document.getElementById("btnFood").click();
+		  document.getElementById("btnBusiness").click();
+		  document.getElementById("btnBusiness").click();
+		  document.getElementById("btnArt").click();
+		  document.getElementById("btnArt").click();
+		  document.getElementById("btnService").click();
+		  document.getElementById("btnService").click();
+	    });
+ 
+
+		//this function is called when a listing or a CoC icon is clicked
+		//it zooms the view to the member's location
+		function flyToStore(currentFeature) {
+			map.flyTo({
+				center: currentFeature.geometry.coordinates,
+				zoom: 17.5
+			  });
+		  }
+		  //this function is called when a listing or a CoC icon is clicked
+		  //it displays a pop up with additional information
+		function createPopUp(currentFeature) {
+			var popUps = document.getElementsByClassName('mapboxgl-popup');
+			if (popUps[0]) popUps[0].remove();
+
+
+			var popup = new mapboxgl.Popup({closeOnClick: false})
+				  .setLngLat(currentFeature.geometry.coordinates)
+				  .setHTML('<h3>' + currentFeature.properties.Merchant + '</h3>' +
+					'<h4>' + currentFeature.properties.Location + '<br>' +currentFeature.properties.Message + '</h4>')
+				  .addTo(map);
+		  }	     
+		
+		  //this is an event that is triggered when the user clicks on a CoC icon
+		  map.on('click', function(e) {
+		  var features = map.queryRenderedFeatures(e.point, {
+			layers: ['coc-member-geolocations-v4'] 
+		  });
+
+		  if (!features.length) {
+			return;
+		  }
+
+		  var clickedStore = features[0];
+		  // 1. Fly to the point
+			flyToStore(clickedStore);
+			
+			// 2. Close all other popups and display popup for clicked store
+			createPopUp(clickedStore);
+
+			// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+			//var activeItem = document.getElementsByClassName('active');
+
+			//e.stopPropagation();
+			//if (activeItem[0]) {
+			//   activeItem[0].classList.remove('active');
+			//}
+
+			//var listing = document.getElementById('listing-' + i);
+			//listing.classList.add('active');
+
+
+		  });		
+	    //the next two functions are called when the map first loads 
+		//they build the list of CoC members in the left hand index
+		//this function also adds an event listener for each member added to the list
+		//so that a click on the listing will zoom the view to the member's location		
+		function buildCatagoryList(){
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.display === "block") {
+					  content.style.display = "none";
+					} else {
+					  content.style.display = "block";
+					}
+				});
+			}
+		}		
+	function buildLocationList(stores) {
+
+		for (i = 0; i < stores.length; i++) 
+		{
+			var currentStore = stores[i];
+			var prop = currentStore.properties;
+			
+			if (memberList.findIndex(x => x==prop.uID) != -1){
+				return;
+			}
+			else{
+				memberList.push(prop.uID);		
+				if(prop.Category === 'Shop')
+				{
+					//console.log(prop);
+					var listings = document.getElementById('shop_listings');
+					var listing = listings.appendChild(document.createElement('div'));
+					listing.className = 'item';
+					listing.id = "listing-" + i;
+
+					var link = listing.appendChild(document.createElement('a'));
+					link.href = '#';
+					link.className = 'title';
+					link.dataPosition = i;
+					link.innerHTML = prop.Merchant;
+
+				//	var details = listing.appendChild(document.createElement('div'));
+				//	details.innerHTML = prop.Location;
+				//	details.innerHTML += ' &middot; ' + prop.Phone;
+				
+					link.addEventListener('click', function(e)
+					{
+						// Update the currentFeature to the store associated with the clicked link
+						var clickedListing = stores[this.dataPosition];
+
+						// 1. Fly to the point
+						flyToStore(clickedListing);
+
+						// 2. Close all other popups and display popup for clicked store
+						createPopUp(clickedListing);
+
+						// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+						var activeItem = document.getElementsByClassName('active');
+
+						if (activeItem[0]) {
+						   activeItem[0].classList.remove('active');
+						}
+						this.parentNode.classList.add('active');
+
+					});
+				}
+				if(prop.Category === 'Business')
+				{
+					//console.log(prop);
+					var listings = document.getElementById('business_listings');
+					var listing = listings.appendChild(document.createElement('div'));
+					listing.className = 'item';
+					listing.id = "listing-" + i;
+
+					var link = listing.appendChild(document.createElement('a'));
+					link.href = '#';
+					link.className = 'title';
+					link.dataPosition = i;
+					link.innerHTML = prop.Merchant;
+
+				//	var details = listing.appendChild(document.createElement('div'));
+				//	details.innerHTML = prop.Location;
+				//	details.innerHTML += ' &middot; ' + prop.Phone;
+				
+					link.addEventListener('click', function(e)
+					{
+						// Update the currentFeature to the store associated with the clicked link
+						var clickedListing = stores[this.dataPosition];
+
+						// 1. Fly to the point
+						flyToStore(clickedListing);
+
+						// 2. Close all other popups and display popup for clicked store
+						createPopUp(clickedListing);
+
+						// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+						var activeItem = document.getElementsByClassName('active');
+
+						if (activeItem[0]) {
+						   activeItem[0].classList.remove('active');
+						}
+						this.parentNode.classList.add('active');
+
+					});
+				}
+				if(prop.Category === 'Food')
+				{
+					//console.log(prop);
+					var listings = document.getElementById('food_listings');
+					var listing = listings.appendChild(document.createElement('div'));
+					listing.className = 'item';
+					listing.id = "listing-" + i;
+
+					var link = listing.appendChild(document.createElement('a'));
+					link.href = '#';
+					link.className = 'title';
+					link.dataPosition = i;
+					link.innerHTML = prop.Merchant;
+
+				//	var details = listing.appendChild(document.createElement('div'));
+				//	details.innerHTML = prop.Location;
+				//	details.innerHTML += ' &middot; ' + prop.Phone;
+				
+					link.addEventListener('click', function(e)
+					{
+						// Update the currentFeature to the store associated with the clicked link
+						var clickedListing = stores[this.dataPosition];
+
+						// 1. Fly to the point
+						flyToStore(clickedListing);
+
+						// 2. Close all other popups and display popup for clicked store
+						createPopUp(clickedListing);
+
+						// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+						var activeItem = document.getElementsByClassName('active');
+
+						if (activeItem[0]) {
+						   activeItem[0].classList.remove('active');
+						}
+						this.parentNode.classList.add('active');
+
+					});
+				}	
+				if(prop.Category === 'Art')
+				{
+					//console.log(prop);
+					var listings = document.getElementById('art_listings');
+					var listing = listings.appendChild(document.createElement('div'));
+					listing.className = 'item';
+					listing.id = "listing-" + i;
+
+					var link = listing.appendChild(document.createElement('a'));
+					link.href = '#';
+					link.className = 'title';
+					link.dataPosition = i;
+					link.innerHTML = prop.Merchant;
+
+				//	var details = listing.appendChild(document.createElement('div'));
+				//	details.innerHTML = prop.Location;
+				//	details.innerHTML += ' &middot; ' + prop.Phone;
+				
+					link.addEventListener('click', function(e)
+					{
+						// Update the currentFeature to the store associated with the clicked link
+						var clickedListing = stores[this.dataPosition];
+
+						// 1. Fly to the point
+						flyToStore(clickedListing);
+
+						// 2. Close all other popups and display popup for clicked store
+						createPopUp(clickedListing);
+
+						// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+						var activeItem = document.getElementsByClassName('active');
+
+						if (activeItem[0]) {
+						   activeItem[0].classList.remove('active');
+						}
+						this.parentNode.classList.add('active');
+
+					});
+				}		
+				if(prop.Category === 'Service')
+				{
+					//console.log(prop);
+					var listings = document.getElementById('service_listings');
+					var listing = listings.appendChild(document.createElement('div'));
+					listing.className = 'item';
+					listing.id = "listing-" + i;
+
+					var link = listing.appendChild(document.createElement('a'));
+					link.href = '#';
+					link.className = 'title';
+					link.dataPosition = i;
+					link.innerHTML = prop.Merchant;
+
+				//	var details = listing.appendChild(document.createElement('div'));
+				//	details.innerHTML = prop.Location;
+				//	details.innerHTML += ' &middot; ' + prop.Phone;
+				
+					link.addEventListener('click', function(e)
+					{
+						// Update the currentFeature to the store associated with the clicked link
+						var clickedListing = stores[this.dataPosition];
+
+						// 1. Fly to the point
+						flyToStore(clickedListing);
+
+						// 2. Close all other popups and display popup for clicked store
+						createPopUp(clickedListing);
+
+						// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+						var activeItem = document.getElementsByClassName('active');
+
+						if (activeItem[0]) {
+						   activeItem[0].classList.remove('active');
+						}
+						this.parentNode.classList.add('active');
+
+					});
+				}	
+				if(prop.Category === 'Accommodation')
+				{
+					//console.log(prop);
+					var listings = document.getElementById('accom_listings');
+					var listing = listings.appendChild(document.createElement('div'));
+					listing.className = 'item';
+					listing.id = "listing-" + i;
+
+					var link = listing.appendChild(document.createElement('a'));
+					link.href = '#';
+					link.className = 'title';
+					link.dataPosition = i;
+					link.innerHTML = prop.Merchant;
+
+				//	var details = listing.appendChild(document.createElement('div'));
+				//	details.innerHTML = prop.Location;
+				//	details.innerHTML += ' &middot; ' + prop.Phone;
+				
+					link.addEventListener('click', function(e)
+					{
+						// Update the currentFeature to the store associated with the clicked link
+						var clickedListing = stores[this.dataPosition];
+
+						// 1. Fly to the point
+						flyToStore(clickedListing);
+
+						// 2. Close all other popups and display popup for clicked store
+						createPopUp(clickedListing);
+
+						// 3. Highlight listing in sidebar (and remove highlight for all other listings)
+						var activeItem = document.getElementsByClassName('active');
+
+						if (activeItem[0]) {
+						   activeItem[0].classList.remove('active');
+						}
+						this.parentNode.classList.add('active');
+
+					});
+				}			
+			   }
+		}
+			   
+	}
+	      
+	    
+	      
+	    //]]>
+	</script>
+</body>
+</html>
