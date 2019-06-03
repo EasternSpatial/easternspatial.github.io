@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Chamber Member Locator</title>
@@ -263,19 +264,27 @@
  
 		  map.on('load', function() {
 		  
-			map.addSource("CoC_member_geolocations", {
-			type: "geojson",
-			data: "?handler=CoC_member_geolocations_v4",
+			map.addSource("geojson_test", {
+			"type":"geojson",
+			data: "http://www.easternspatial.com/webmaps/CoC/CoC_members.geojson",
 			cluster: true,
 			clusterMaxZoom: 18, // Max zoom to cluster points on
 			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
 			});
+			
+			//map.addSource("CoC_member_geolocations_v4", {
+			//type: "geojson",
+			//data: "?handler=CoC_member_geolocations_v4",
+			//cluster: true,
+			//clusterMaxZoom: 13, // Max zoom to cluster points on
+			//clusterRadius: 512 // Radius of each cluster when clustering points (defaults to 50)
+			//});
 			 
 			map.addLayer({
-                id: 'clusters',
-                type: 'circle',
-                source: 'CoC_member_geolocations',
-                paint: {
+                "id": 'clusters',
+                "type": 'circle',
+                "source": 'geojson_test',				
+                "paint": {
                     'circle-color': {
                         property: 'point_count',
                         type: 'interval',
@@ -291,18 +300,18 @@
                         stops: [
                             [0, 20],
                             [5, 30],
-                            [15, 40]
+                            [10, 40]
                         ]
                     }
                 }
             });
 
             map.addLayer({
-                id: 'cluster-count',
-                type: 'symbol',
-                source: 'CoC_member_geolocations',
-                filter: ['has', 'point_count'],
-                layout: {
+                "id": 'cluster-count',
+                "type": 'symbol',
+                "source": 'geojson_test',				
+                "filter": ['has', 'point_count'],
+                "layout": {
                     'text-field': '{point_count}',
                     'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
                     'text-size': 12
@@ -310,11 +319,11 @@
             });
 
             map.addLayer({
-                id: 'member',
-                type: 'circle',
-                source: 'CoC_member_geolocations',
-                filter: ['!has', 'point_count'],
-                paint: {
+                "id": 'member',
+                "type": 'circle',
+                "source": 'test',				
+                "filter": ['!has', 'point_count'],
+                "paint": {
                     'circle-color': '#1EF008',
                     'circle-radius': 6,
                     'circle-stroke-width': 1,
