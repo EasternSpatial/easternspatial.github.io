@@ -263,26 +263,23 @@
  
 		  map.on('load', function() {
 		  
-			map.addSource("geojson_test", {
+			// Cluster the CoC features to simplify points in map view. Unfortunately, Mapbox clustering does not currently support vector tiles. 
+			// Workaround is to set the Mapbox studio style opacity to null and overlay a geojson source from the dataset api here instead. 
+			// This allows the points to cluster without effecting the querySourceFeatures function to build the location list below.
+			// TODO - check the performance hits of loading these features through the dataset api...
+			
+			map.addSource("CoC_member_geolocations", {
 			"type":"geojson",
-			data: "http://www.easternspatial.com/webmaps/CoC/CoC_members.geojson",
+			data: "https://api.mapbox.com/datasets/v1/mdcoc/cjvyd1iu50rv82onu8flfvq0a/features?access_token=pk.eyJ1IjoibWRjb2MiLCJhIjoiY2p0cWdzcWhsMGZjcjQ0bGxudnN1dnZobSJ9.C7MVMwhzHd0hITpgN4jTYw",
 			cluster: true,
 			clusterMaxZoom: 18, // Max zoom to cluster points on
 			clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
 			});
 			
-			//map.addSource("CoC_member_geolocations_v4", {
-			//type: "geojson",
-			//data: "?handler=CoC_member_geolocations_v4",
-			//cluster: true,
-			//clusterMaxZoom: 13, // Max zoom to cluster points on
-			//clusterRadius: 512 // Radius of each cluster when clustering points (defaults to 50)
-			//});
-			 
 			map.addLayer({
                 "id": 'clusters',
                 "type": 'circle',
-                "source": 'geojson_test',				
+                "source": 'CoC_member_geolocations',				
                 "paint": {
                     'circle-color': {
                         property: 'point_count',
@@ -308,7 +305,7 @@
             map.addLayer({
                 "id": 'cluster-count',
                 "type": 'symbol',
-                "source": 'geojson_test',				
+                "source": 'CoC_member_geolocations',				
                 "filter": ['has', 'point_count'],
                 "layout": {
                     'text-field': '{point_count}',
@@ -320,7 +317,7 @@
             map.addLayer({
                 "id": 'member',
                 "type": 'circle',
-                "source": 'geojson_test',				
+                "source": 'CoC_member_geolocations',				
                 "filter": ['!has', 'point_count'],
                 "paint": {
                     'circle-color': '#1EF008',
